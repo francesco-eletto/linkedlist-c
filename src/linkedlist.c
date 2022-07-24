@@ -8,7 +8,7 @@ struct __LinkedList {
 
 LinkedList ll_new() {
     LinkedList list = malloc(sizeof(struct __LinkedList));
-    if (LinkedList == NULL) {
+    if (list == NULL) {
         return NULL;
     }
 
