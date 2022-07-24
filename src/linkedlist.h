@@ -1,16 +1,17 @@
 #ifndef __LINKEDLIST__
 #define __LINKEDLIST__
 
+typedef struct __LinkedList* LinkedList; 
+
 typedef struct {
     int value;
-    LinkedList *next;
-} LinkedList;
+    void *next;
+} Node;
 
+LinkedList ll_new();
 
-LinkedList* ll_new();
+void ll_add(LinkedList list, int value);
 
-void ll_add(LinkedList *list, int value);
-
-void ll_del(LinkedList *list);
+void ll_del(LinkedList list);
 
 #endif
