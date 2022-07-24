@@ -23,7 +23,18 @@ void ll_add(LinkedList list, int value) {
     
 }
 
-void ll_del(LinkedList list) {
-    // TODO body
-    
+void node_free(Node *node) {
+    if (node->next) {
+        node_free(node->next);
+    }
+
+    free(node);
+}
+
+void ll_free(LinkedList list) {
+    if (list->first) {
+        node_free(list->first);
+    }
+
+    free(list);
 }
