@@ -2,7 +2,7 @@
 #include "linkedlist.h"
 
 struct __LinkedList {
-    unsigned int lenght;
+    unsigned int length;
     void *first;
 };
 
@@ -12,7 +12,7 @@ LinkedList ll_new() {
         return NULL;
     }
 
-    list->lenght = 0;
+    list->length = 0;
     list->first = NULL;
 
     return list;
