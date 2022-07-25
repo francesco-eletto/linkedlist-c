@@ -56,7 +56,15 @@ int ll_add(LinkedList list, int value) {
 }
 
 int ll_get(LinkedList list, unsigned int index) {
-    // TODO body
+    unsigned long int count = 0;
+    if (index > list->length - 1)
+        return 0;
+    struct __Node *node = list->first;
+    while (count != index) {
+        node = node->next;
+        count++;
+    }
+    return node->value;
 }
 
 int ll_rm(LinkedList list, unsigned int index) {
