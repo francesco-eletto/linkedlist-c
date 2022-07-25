@@ -3,15 +3,15 @@
 
 typedef struct __LinkedList* LinkedList; 
 
-typedef struct {
-    int value;
-    void *next;
-} Node;
-
 LinkedList ll_new();
 
 void ll_add(LinkedList list, int value);
 
+int ll_get(LinkedList list, unsigned int index);
+
+int ll_rm(LinkedList list, unsigned int index);
+
 void ll_free(LinkedList list);
 
 #endif
+

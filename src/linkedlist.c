@@ -1,9 +1,14 @@
 #include <malloc.h>
 #include "linkedlist.h"
 
+struct __Node {
+    int value;
+    struct __Node *next;
+};
+
 struct __LinkedList {
     unsigned int length;
-    void *first;
+    struct __Node *first;
 };
 
 LinkedList ll_new() {
@@ -20,14 +25,22 @@ LinkedList ll_new() {
 
 void ll_add(LinkedList list, int value) {
     // TODO body
-    
 }
 
-void node_free(Node *node) {
+int ll_get(LinkedList list, unsigned int index) {
+    // TODO body
+}
+
+int ll_rm(LinkedList list, unsigned int index) {
+    // TODO body
+}
+
+
+void node_free(struct __Node *node) {
     while (node != NULL) {
-        Node *ptr = node->next;
+        struct __Node *next = node->next;
         free(node);
-        node = ptr;
+        node = next;
     }
 }
 
