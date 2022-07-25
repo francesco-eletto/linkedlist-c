@@ -5,7 +5,7 @@ typedef struct __LinkedList* LinkedList;
 
 LinkedList ll_new();
 
-void ll_add(LinkedList list, int value);
+int ll_add(LinkedList list, int value);
 
 int ll_get(LinkedList list, unsigned int index);
 

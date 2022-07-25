@@ -23,8 +23,36 @@ LinkedList ll_new() {
     return list;
 }
 
-void ll_add(LinkedList list, int value) {
-    // TODO body
+struct __Node *node_new(int value) {
+    struct __Node *node = malloc(sizeof(struct  __Node));
+    if (node == NULL) {
+        return NULL;
+    }
+
+    node->value = value;
+    node->next = NULL;
+    return node;
+}
+
+int ll_add(LinkedList list, int value) {
+    struct __Node *new = node_new(value);
+    if (new == NULL) {
+        return 0;
+    }
+
+    if (list->first == NULL) {
+        list->first = new;
+    } else {
+        struct __Node *ptr = list->first;
+        while (ptr->next != NULL) {
+            ptr = ptr->next;
+        }
+
+        ptr->next = new;
+    }
+
+    list->length += 1;
+    return 1;
 }
 
 int ll_get(LinkedList list, unsigned int index) {
@@ -34,7 +62,6 @@ int ll_get(LinkedList list, unsigned int index) {
 int ll_rm(LinkedList list, unsigned int index) {
     // TODO body
 }
-
 
 void node_free(struct __Node *node) {
     while (node != NULL) {
