@@ -24,11 +24,11 @@ void ll_add(LinkedList list, int value) {
 }
 
 void node_free(Node *node) {
-    if (node->next) {
-        node_free(node->next);
+    while (node != NULL) {
+        Node *ptr = node->next;
+        free(node);
+        node = ptr;
     }
-
-    free(node);
 }
 
 void ll_free(LinkedList list) {
