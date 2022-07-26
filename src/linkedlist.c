@@ -21,6 +21,10 @@ LinkedList ll_new() {
     return list;
 }
 
+unsigned int ll_len(LinkedList list) {
+    return list->length;
+}
+
 struct __Node *node_new(int value) {
     struct __Node *node = malloc(sizeof(struct __Node));
     if (node != NULL) {
