@@ -68,7 +68,30 @@ int ll_get(LinkedList list, unsigned int index) {
 }
 
 int ll_rm(LinkedList list, unsigned int index) {
-    // TODO body
+    if (index + 1 > list->length) {
+        return 0;
+    }
+
+    int val = 0;
+    struct __Node *to_del = list->first;
+
+    if (index == 0) {
+        list->first = to_del->next;
+    }
+    else {
+        struct __Node *node = list->first;
+        for (unsigned int i = 0; i < index - 1; i++) {
+            node = node->next;
+        }
+
+        to_del = node->next;
+        node->next = to_del->next;
+    }
+
+    val = to_del->value;
+    free(to_del);
+    list->length -= 1;
+    return val;
 }
 
 void node_free(struct __Node *node) {
