@@ -9,13 +9,14 @@ struct __Node {
 struct __LinkedList {
     unsigned int length;
     struct __Node *first;
+    struct __Node *tail;
 };
 
 LinkedList ll_new() {
     LinkedList list = malloc(sizeof(struct __LinkedList));
     if (list != NULL) {
         list->length = 0;
-        list->first = NULL;
+        list->first = list->tail = NULL;
     }
 
     return list;
@@ -44,14 +45,10 @@ int ll_add(LinkedList list, int value) {
     if (list->first == NULL) {
         list->first = new;
     } else {
-        struct __Node *node = list->first;
-        while (node->next != NULL) {
-            node = node->next;
-        }
-
-        node->next = new;
+        list->tail->next = new;
     }
 
+    list->tail = new;
     list->length += 1;
     return 1;
 }
@@ -59,6 +56,8 @@ int ll_add(LinkedList list, int value) {
 int ll_get(LinkedList list, unsigned int index) {
     if (index + 1 > list->length) {
         return 0;
+    } else if (index + 1 == list->length) {
+        return list->tail->value;
     }
 
     struct __Node *node = list->first;
@@ -78,11 +77,19 @@ int ll_rm(LinkedList list, unsigned int index) {
     struct __Node *to_del = list->first;
 
     if (index == 0) {
+        if (list->first == list->tail) {
+            list->tail = NULL;
+        }
+
         list->first = to_del->next;
     } else {
         struct __Node *node = list->first;
-        for (unsigned int i = 0; i < index; i++) {
+        for (unsigned int i = 0; i < index - 1; i++) {
             node = node->next;
+        }
+
+        if (index + 1 == list->length) {
+            list->tail = node;
         }
 
         to_del = node->next;
